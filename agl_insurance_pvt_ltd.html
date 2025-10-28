@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGL Insurance Pvt. Ltd.</title>
+    
+    <style>
+        :root {
+            --primary-color: #3f51b5;
+            --text-color: #333;
+            --background-overlay: rgba(255, 255, 255, 0.95);
+            --border-color: #333;
+            --font-family: 'Arial', sans-serif;
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f5f3ef;
+            font-family: var(--font-family);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .background-container {
+            background: url('agl_building_background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: block;
+            padding-top: var(--header-height);
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--primary-color);
+            color: white;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transform: translateY(-100%);
+            animation: slideInTop 1s ease-out forwards;
+        }
+
+        header h1 {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 2em;
+            margin: 0;
+            border-bottom: none;
+        }
+
+        @keyframes slideInTop {
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .content-area {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            min-height: calc(100vh - var(--header-height) - 150px);
+        }
+
+        .insurance-section {
+            width: 45%;
+            padding: 40px;
+            background: var(--background-overlay);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            min-height: 350px;
+            border-right: none;
+            
+            opacity: 0;
+            transform: translateX(-100%);
+            animation: rollIn 1s ease-out forwards;
+            animation-delay: 1.5s;
+        }
+        
+        .insurance-item {
+            padding: 15px 0;
+            text-align: left;
+            opacity: 1; 
+            transform: none; 
+        }
+
+        .insurance-item h2 {
+            font-size: 1.8em;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+
+        .know-more-btn {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 5px;
+            padding: 5px 0;
+            transition: color 0.3s;
+        }
+        
+        .know-more-btn:hover {
+            color: #303f9f;
+        }
+
+        @keyframes rollIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .login-section {
+            width: 40%;
+            padding: 40px;
+            background: var(--background-overlay);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            
+            opacity: 0;
+            transform: translateX(100%);
+            animation: slideInRight 1s ease-out forwards;
+            animation-delay: 2s;
+        }
+        
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .login-form h2 {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .input-group input[type="text"],
+        .input-group input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            padding-right: 60px; /* INCREASED space for the text/icon toggle */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+        
+        .input-group input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        
+        /* Styles for the standard text/icon toggle */
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 35px;
+            cursor: pointer;
+            color: var(--primary-color); /* Use theme color for visibility */
+            font-size: 0.9em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        #password-rules {
+            font-size: 0.85em;
+            text-align: left;
+            margin-top: -10px;
+            margin-bottom: 20px;
+            padding: 5px 10px;
+            background: #f9f9f9;
+            border-left: 3px solid var(--primary-color);
+            display: none;
+        }
+        #password-rules li {
+            list-style: none;
+            padding-left: 0;
+            color: #777;
+        }
+        .valid {
+            color: #198754;
+        }
+        .invalid {
+            color: #dc3545;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin-bottom: 15px;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+
+        .login-btn:hover:not(:disabled) {
+            background-color: #303f9f;
+        }
+        
+        .login-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .auth-links {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .auth-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .auth-links a:hover {
+            text-decoration: underline;
+            color: var(--primary-color);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(245, 243, 239, 0.9); 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            font-size: 0.9em;
+            border-top: 1px solid #ddd;
+        }
+
+        .social-links p {
+            margin: 5px 0;
+        }
+        
+        .social-icons a {
+            color: var(--primary-color);
+            font-size: 1.5em;
+            margin-right: 15px;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: #303f9f;
+        }
+
+        .contact-info {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        @media (max-width: 900px) {
+            .content-area {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .insurance-section, .login-section {
+                width: 90%;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-container">
+        
+        <header>
+            <h1>AGL INSURANCE PVT. LTD.</h1>
+        </header>
+        
+        <div class="content-area">
+            
+            <div class="insurance-section">
+                <div class="insurance-item">
+                    <h2>LIFE INSURANCE</h2>
+                    <p>Secure your future and the financial stability of your loved ones.</p>
+                    <a href="life-insurance.html" class="know-more-btn">KNOW MORE &#8594;</a>
+                </div>
+                
+                <div class="insurance-item">
+                    <h2>GENERAL INSURANCE</h2>
+                    <p>Protection for your health, assets, and liabilities (Motor, Health, Home).</p>
+                    <a href="general-insurance.html" class="know-more-btn">KNOW MORE &#8594;</a>
+                </div>
+            </div>
+            
+            <div class="login-section">
+                <form action="welcome_animated.html" class="login-form">
+                    <h2>LOGIN</h2>
+                    
+                    <div class="input-group">
+                        <label for="username">USERNAME</label>
+                        <input type="text" id="username" name="username" placeholder="Enter Username" onkeyup="checkInputs()">
+                    </div>
+                    
+                    <div class="input-group">
+                        <label for="password">PASSWORD</label>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Enter Password" 
+                            onkeyup="checkInputs()"
+                            onfocus="document.getElementById('password-rules').style.display='block'"
+                            onblur="document.getElementById('password-rules').style.display='none'"
+                        >
+                        <span id="passwordToggle" class="toggle-password" onclick="togglePasswordVisibility()">SHOW</span>
+                    </div>
+
+                    <ul id="password-rules">
+                        <li id="req-length">Password must contain 8-16 characters</li>
+                        <li id="req-uppercase">Password should contain at least one upper-case alphabet</li>
+                        <li id="req-special">Password must contain at least one special character (!@#$%^&*)</li>
+                        <li id="req-number">Password should contain at least one number</li>
+                    </ul>
+                    
+                    <button type="submit" class="login-btn" id="loginBtn" disabled>LOGIN</button>
+                    
+                    <div class="auth-links">
+                        <a href="forgot-password.html">Forgot Password</a>
+                        <span>|</span>
+                        <a href="signup.html">SIGN UP</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    
+    <footer>
+        <div class="social-links">
+            <p>FOLLOW US ON</p>
+            <div class="social-icons">
+                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <div class="contact-info">
+            <p>TOLLFREE 1800-XXXX-X000</p>
+        </div>
+    </footer>
+    
+    <script>
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const loginBtn = document.getElementById('loginBtn');
+        const passwordToggle = document.getElementById('passwordToggle');
+        
+        const reqs = {
+            length: document.getElementById('req-length'),
+            uppercase: document.getElementById('req-uppercase'),
+            special: document.getElementById('req-special'),
+            number: document.getElementById('req-number'),
+        };
+
+        function checkPasswordValidity() {
+            const p = passwordInput.value;
+            let allValid = true;
+
+            const rules = [
+                { id: reqs.length, regex: /^.{8,16}$/ },
+                { id: reqs.uppercase, regex: /[A-Z]/ },
+                { id: reqs.special, regex: /[!@#$%^&*]/ },
+                { id: reqs.number, regex: /[0-9]/ }
+            ];
+
+            rules.forEach(rule => {
+                const isValid = rule.regex.test(p);
+                rule.id.className = isValid ? 'valid' : 'invalid';
+                if (!isValid) {
+                    allValid = false;
+                }
+            });
+
+            return allValid;
+        }
+
+        function checkInputs() {
+            const username = usernameInput.value;
+            const password = passwordInput.value;
+            
+            // Only validate password if it has some characters
+            const isPasswordValid = password.length > 0 ? checkPasswordValidity() : false;
+            
+            const isUsernameFilled = username.length > 0;
+            
+            // Enable button only if username is filled AND password meets all criteria
+            if (isUsernameFilled && isPasswordValid) {
+                loginBtn.disabled = false;
+            } else {
+                loginBtn.disabled = true;
+            }
+        }
+        
+        function togglePasswordVisibility() {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                passwordToggle.textContent = 'HIDE';
+            } else {
+                passwordInput.type = 'password';
+                passwordToggle.textContent = 'SHOW';
+            }
+        }
+
+        // Initialize the input check on page load
+        document.addEventListener('DOMContentLoaded', checkInputs);
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; 
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            height: 100vh;
+        }
+
+        #welcome-animation-container {
+            width: 100%;
+            height: 100px;
+            margin-top: 50px;
+            overflow: hidden;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        #welcome-text {
+            position: relative;
+            font-size: 3em;
+            font-weight: bold;
+            color: #333;
+            white-space: nowrap;
+            display: inline-block;
+            animation: slideInLeft 2s ease-out forwards;
+            left: -100%;
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                left: -100%;
+            }
+            100% {
+                left: 0;
+            }
+        }
+
+        #message-container {
+            margin-top: 30px;
+            font-size: 1.5em;
+            color: #555;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+            animation-delay: 2.2s;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="welcome-animation-container">
+        <span id="welcome-text">Welcome User</span>
+    </div>
+
+    <div id="message-container">
+        Buy the best plan from our options to secure your life.
+    </div>
+
+</body>
+</html>
