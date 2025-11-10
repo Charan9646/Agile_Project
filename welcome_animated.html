@@ -64,6 +64,27 @@
                 opacity: 1;
             }
         }
+
+        /* Button styling */
+        #form-button {
+            margin-top: 40px;
+            padding: 12px 25px;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+            animation-delay: 3s;
+            transition: background-color 0.3s ease;
+        }
+
+        #form-button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -75,6 +96,15 @@
     <div id="message-container">
         Buy the best plan from our options to secure your life.
     </div>
+
+    <!-- Button that redirects to Google Form -->
+    <button id="form-button" onclick="redirectToForm()">Fill Out Form</button>
+
+    <script>
+        function redirectToForm() {
+            window.location.href = "https://forms.gle/zqRNK6hzermu12E48";
+        }
+    </script>
 
 </body>
 </html>
